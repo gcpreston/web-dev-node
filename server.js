@@ -1,8 +1,12 @@
 const express = require('express');
+const cors = require('cors');
+
 const app = express();
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 // CORS
 app.use(function(req, res, next) {
@@ -24,4 +28,4 @@ app.get('/hello', (req, res) => {
 require('./services/movie-service')(app);
 require('./services/tweeter-service')(app);
 
-app.listen(4000);
+app.listen(process.env.PORT || 4000);
