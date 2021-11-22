@@ -1,5 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/webdev');
 
 const app = express();
 
@@ -27,5 +30,6 @@ app.get('/hello', (req, res) => {
 // Services
 require('./services/movie-service')(app);
 require('./services/tweeter-service')(app);
+require('./movies/service')(app);
 
 app.listen(process.env.PORT || 4000);
